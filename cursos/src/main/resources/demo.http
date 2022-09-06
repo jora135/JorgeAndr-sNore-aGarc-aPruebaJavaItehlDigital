@@ -1,0 +1,8 @@
+###
+POST http://localhost:85/api/factura?nombre=python&costo=1000000&descripcion=sindescripcion&horas_duracion=5&dirigido_a=personas&modalidad=Privado
+###
+GET http://localhost:9080/api/cursos
+###
+PUT http://localhost:9080/api/cursos?4/nombre=python&costo=1000000&descripcion=sindescripcion&horas_duracion=5&dirigido_a=personas&modalidad=Privado
+###
+DELETE http://localhost:9080/api/cursos/4
