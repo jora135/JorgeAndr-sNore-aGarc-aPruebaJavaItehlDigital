@@ -1,0 +1,648 @@
+openapi: 3.0.0
+info:
+  title: API Creador de cursos.
+  description: Esta API cuenta con los metosos API Rest para visualizar, editar, crear y eliminar cursos y descuentos.
+  contact: 
+    name: Jorge Andrés Noreña García
+    url: "https://github.com/jora135/JorgeAndresNore-aGarciaPruebaJavaItehlDigital"
+    email: joranorenag@gmail.com
+  license: 
+    name: Java8
+    url: https://www.java.com/es/download/java8_update.jsp
+  version: 1.0.0
+  
+servers:
+  - url: http://localhost:9080/api/cursos
+  - url: http://localhost:9080/api/descuento
+  - url: http://localhost:9080/api/modalidad
+  
+tags:
+- name: cursos
+  description: Este endpoint maneja toda la informacion relacionada con el curso
+  
+paths: 
+  /cursos/{id}:
+    get:
+      tags: 
+      - cursos
+      description: Inserta la informacion de un nuevo curso en la base de datos.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: codigo del curso
+        schema:
+          type: number
+          example: 5
+          
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    id:
+                      type: integer
+                      example: 5
+                    nombre: 
+                      type: string
+                      example: Python
+                    costo: 
+                      type: integer
+                      example: 500000
+                    descripcion: 
+                      type: string
+                      example: Curso enfocado en manejo de bases de datos en Python
+                    horas_duracion: 
+                      type: integer
+                      example: 30
+                    dirigido_a: 
+                      type: string
+                      example: Todo publico
+                    modalidad: 
+                      type: string
+                      example: Privado
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+                
+    put:
+      tags:
+        - cursos
+      description: actualiza curso y id
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: Crea nueva actualizacion de un curso existente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 5
+                nombre: 
+                  type: string
+                  example: Python
+                costo: 
+                  type: integer
+                  example: 500000
+                descripcion: 
+                  type: string
+                  example: Curso enfocado en manejo de bases de datos en Python
+                horas_duracion: 
+                  type: integer
+                  example: 30
+                dirigido_a: 
+                  type: string
+                  example: Todo publico
+                modalidad: 
+                  type: string
+                  example: Privado
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+    
+    delete:
+      tags:
+        - cursos
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          description: El id del curso que sera eliminado
+          required: true
+          schema:
+            type: string
+            properties:
+                id:
+                  type: integer
+                  example: 5
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+
+  /cursos:
+    post:
+      tags: 
+      - cursos
+      description: Permite crear cursos en la base de datos.
+      parameters:
+      - name: curso
+        required: true
+        in: query
+        description: Crear un nuevo curso en la base de datos
+        schema:
+          type: object
+          properties:
+            nombre: 
+              type: string
+              example: Python
+            costo: 
+              type: integer
+              example: 500000
+            descripcion: 
+              type: string
+              example: Curso enfocado en manejo de bases de datos en Python
+            horas_duracion: 
+              type: integer
+              example: 30
+            dirigido_a: 
+              type: string
+              example: Todo publico
+            modalidad: 
+              type: string
+              example: Privado
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+    
+    
+
+
+  /descuento/{id}:
+    get:
+      tags: 
+      - descuento
+      description: Inserta la informacion de un nuevo descuento en la base de datos.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: codigo del descuento
+        schema:
+          type: number
+          example: 5
+          
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    id:
+                      type: integer
+                      example: 5
+                    nombre_des: 
+                      type: string
+                      example: Aniversario
+                    modalidad: 
+                      type: string
+                      example: Online
+                    pais: 
+                      type: string
+                      example: Colombia
+                    descuento: 
+                      type: integer
+                      example: 20
+                    curso: 
+                      type: string
+                      example: Python
+                    fecha_fin_promo: 
+                      type: string
+                      example: 31-12-2022
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found       
+                
+    put:
+      tags:
+        - descuento
+      description: actualiza descuento y id
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: Crea nueva actualizacion de un descuento existente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 5
+                nombre_des: 
+                  type: string
+                  example: Aniversario
+                modalidad: 
+                  type: string
+                  example: Online
+                pais: 
+                  type: string
+                  example: Colombia
+                descuento: 
+                  type: integer
+                  example: 20
+                curso: 
+                  type: string
+                  example: Python
+                fecha_fin_promo: 
+                  type: string
+                  example: 31-12-2022
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+
+    delete:
+      tags:
+        - descuento
+      description: eliminar descuento
+      operationId: eliminar descuento id
+      parameters:
+        - name: id
+          in: path
+          description: El id del descuento que sera eliminado
+          required: true
+          schema:
+            type: string
+            properties:
+                id:
+                  type: integer
+                  example: 5
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+
+          
+  /descuento:
+    post:
+      tags: 
+      - descuento
+      description: Permite crear descuento en la base de datos.
+      parameters:
+      - name: descuento
+        required: true
+        in: query
+        description: Crear un nuevo descuento en la base de datos
+        schema:
+          type: object
+          properties:
+            nombre_des: 
+              type: string
+              example: Aniversario
+            modalidad: 
+              type: string
+              example: Online
+            pais: 
+              type: string
+              example: Colombia
+            descuento: 
+              type: integer
+              example: 20
+            curso: 
+              type: string
+              example: Python
+            fecha_fin_promo: 
+              type: string
+              example: 31-12-2022
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+
+
+
+
+  /modalidad/{id}:
+    get:
+      tags: 
+      - modalidad
+      description: Inserta la informacion de un nuevo modalidad en la base de datos.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: codigo del modalidad
+        schema:
+          type: number
+          example: 2
+          
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    id:
+                      type: integer
+                      example: 2
+                    nombre_mod: 
+                      type: string
+                      example: Python
+                    descripcion_mod: 
+                      type: string
+                      example: Curso enfocado en manejo de bases de datos en Python
+                    
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found          
+
+
+    put:
+      tags:
+        - modalidad
+      description: actualiza modalidad y id
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: Crea nueva actualizacion de un modalidad existente
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 2
+                nombre_mod: 
+                  type: string
+                  example: Python
+                descripcion_mod: 
+                  type: string
+                  example: Curso enfocado en manejo de bases de datos en Python
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+
+    delete:
+      tags:
+        - modalidad
+      description: eliminar modalidad
+      operationId: eliminar modalidad id
+      parameters:
+        - name: id
+          in: path
+          description: El id del modalidad que sera eliminado
+          required: true
+          schema:
+            type: string
+            properties:
+                id:
+                  type: integer
+                  example: 5
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+
+
+  /modalidad:
+    post:
+      tags: 
+        - modalidad
+      description: Permite crear modalidad en la base de datos.
+      parameters:
+      - name: modalidad
+        required: true
+        in: query
+        description: Crear un nuevo modalidad en la base de datos
+        schema:
+          type: object
+          properties:
+            nombre_mod: 
+              type: string
+              example: Python
+            descripcion_mod: 
+              type: string
+              example: Curso enfocado en manejo de bases de datos en Python
+      responses:
+        200:
+          description: successful request
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  properties:
+                    nombre: 
+                      type: string
+                      example: ok
+        404:
+          description: request not  found
+          content:
+            aplication/json:
+              schema:
+                type: string
+                example: Error 404. Page not found
+                
+components:
+  schemas:
+    model_curso:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        nombre: 
+          type: string
+          example: Python
+        costo: 
+          type: integer
+          example: 500000
+        descripcion: 
+          type: string
+          example: Curso enfocado en manejo de bases de datos en Python
+        horas_duracion: 
+          type: integer
+          example: 30
+        dirigido_a: 
+          type: string
+          example: Todo publico
+        modalidad: 
+          type: string
+          example: Privado
+    model_descuento:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        nombre_des: 
+          type: string
+          example: Aniversario
+        modalidad: 
+          type: string
+          example: Online
+        pais: 
+          type: string
+          example: Colombia
+        descuento: 
+          type: integer
+          example: 20
+        curso: 
+          type: string
+          example: Python
+        fecha_fin_promo: 
+          type: string
+          example: 31-12-2022
+    model_modalidad:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        nombre_mod: 
+          type: string
+          example: Python
+        descripcion_mod: 
+          type: string
+          example: Curso enfocado en manejo de bases de datos en Python
+    nombre_base_de_datos:
+      type: string
+      example: cursos_data
+    datasource:
+      type: string
+      example: "spring.datasource.url=jdbc:postgresql://localhost:5432/cursos_data"
+      
