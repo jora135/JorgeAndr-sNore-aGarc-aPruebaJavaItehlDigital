@@ -645,4 +645,18 @@ components:
     datasource:
       type: string
       example: "spring.datasource.url=jdbc:postgresql://localhost:5432/cursos_data"
-      
+    links:
+      type: object
+      properties:
+        Post:
+          type: string
+          example: http://localhost:85/api/cursos?nombre=python&costo=1000000&descripcion=sindescripcion&horas_duracion=5&dirigido_a=personas&modalidad=Privado
+        Put:
+          type: string
+          example: http://localhost:9080/api/cursos?4/nombre=python&costo=1000000&descripcion=sindescripcion&horas_duracion=5&dirigido_a=personas&modalidad=Privado
+        Get:
+          type: string
+          example: http://localhost:9080/api/cursos
+        Delete: 
+          type: string
+          example: http://localhost:9080/api/cursos/4
